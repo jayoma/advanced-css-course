@@ -6,3 +6,97 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/*
+ * basic reset
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /*
+   * the following are inherited by all descendant elements (unless overridden)
+   */
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+
+  /*
+   * the following are NOT inherited by descendant elements
+   */
+  padding: 30px;
+}
+
+.header {
+  height: 95vh;
+  /*
+   * we can stack multiple background images
+   */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 131, 0.8)
+    ),
+    url(../img/hero.jpg);
+  /*
+   * cover = Scales the image as large as possible without stretching the image. If the proportions of the image differ from the element, it is cropped either vertically or horizontally so that no empty space remains.
+   */
+  background-size: cover;
+  background-position: top;
+  /*
+   * learn more about clip-path:
+   * https://bennettfeely.com/clippy/
+   */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /*
+   * make this element the origin/reference from which any absolutely-positioned descendant elements are based
+   */
+  position: relative;
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  /*
+   * super easy, non-flexbox way to center-center an element (note that it will be relative to the first 'relative' parent)
+   */
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.heading-primary-main {
+  /*
+   * 'block' simply means the element is going to occupy 100% of the available width (transform any inline element to a block element)
+   */
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+}

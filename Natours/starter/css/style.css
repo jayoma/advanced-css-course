@@ -152,8 +152,20 @@ body {
   }
 }
 
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
 /*
- * psuedo classes represent a state of an element
+ * pseudo classes represent a state of an element
  */
 .btn:link,
 .btn:visited {
@@ -162,8 +174,8 @@ body {
   padding: 15px 40px;
   display: inline-block;
   border-radius: 100px;
-
   transition: all 0.2s;
+  position: relative;
 }
 
 .btn:hover {
@@ -182,4 +194,47 @@ body {
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+/*
+ * pseudo elements allow us to style certain parts of elements
+ * i.e. the ':after' pseudo element adds a virtual element right after the element we're selecting, and we can then style that virtual element
+ */
+.btn::after {
+  content: '';
+  display: inline-block;
+  /*
+   * this pseudo element is considered to be a child of the '.btn' element, so these height/width properties are relative to the '.btn' element.
+   */
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  /*
+   * this stacks the pseudo element behind the '.btn' element
+   */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /*
+   * always put the transition property on the initial state
+   */
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  /*
+   * automatically apply the styles of the zero-percent state - immediately upon page load - and before the animation starts
+   */
+  animation-fill-mode: backwards;
 }

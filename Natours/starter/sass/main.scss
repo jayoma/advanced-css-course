@@ -1,11 +1,9 @@
-/*
-COLORS:
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
 
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
-*/
+$color-gray-dark: #777;
+$color-white: #fff;
 
 /*
  * basic reset
@@ -24,16 +22,16 @@ html {
 
 body {
   /*
-   * the following are inherited by all descendant elements (unless overridden)
-   */
+    * the following are inherited by all descendant elements (unless overridden)
+    */
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   line-height: 1.7;
-  color: #777;
+  color: $color-gray-dark;
 
   /*
-   * the following are NOT inherited by descendant elements
-   */
+    * the following are NOT inherited by descendant elements
+    */
   padding: 3rem;
   box-sizing: border-box;
 }
@@ -41,27 +39,27 @@ body {
 .header {
   height: 95vh;
   /*
-   * we can stack multiple background images
-   */
+    * we can stack multiple background images
+    */
   background-image: linear-gradient(
       to right bottom,
-      rgba(126, 213, 111, 0.8),
-      rgba(40, 180, 131, 0.8)
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
     ),
     url(../img/hero.jpg);
   /*
-   * cover = Scales the image as large as possible without stretching the image. If the proportions of the image differ from the element, it is cropped either vertically or horizontally so that no empty space remains.
-   */
+    * cover = Scales the image as large as possible without stretching the image. If the proportions of the image differ from the element, it is cropped either vertically or horizontally so that no empty space remains.
+    */
   background-size: cover;
   background-position: top;
   /*
-   * learn more about clip-path:
-   * https://bennettfeely.com/clippy/
-   */
+    * learn more about clip-path:
+    * https://bennettfeely.com/clippy/
+    */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /*
-   * make this element the origin/reference from which any absolutely-positioned descendant elements are based
-   */
+    * make this element the origin/reference from which any absolutely-positioned descendant elements are based
+    */
   position: relative;
 }
 
@@ -77,8 +75,8 @@ body {
 
 .header__text-box {
   /*
-   * super easy, non-flexbox way to center-center an element (note that it will be relative to the first 'relative' parent)
-   */
+    * super easy, non-flexbox way to center-center an element (note that it will be relative to the first 'relative' parent)
+    */
   position: absolute;
   top: 40%;
   left: 50%;
@@ -87,7 +85,7 @@ body {
 }
 
 .heading-primary {
-  color: #fff;
+  color: $color-white;
   text-transform: uppercase;
 
   backface-visibility: hidden;
@@ -96,8 +94,8 @@ body {
 
 .heading-primary--main {
   /*
-   * 'block' simply means the element is going to occupy 100% of the available width (transform any inline element to a block element)
-   */
+    * 'block' simply means the element is going to occupy 100% of the available width (transform any inline element to a block element)
+    */
   display: block;
   font-size: 6rem;
   font-weight: 400;
@@ -108,7 +106,7 @@ body {
   animation-timing-function: ease-out;
 
   /* animation-delay: 3s;
-  animation-iteration-count: 3; */
+   animation-iteration-count: 3; */
 }
 
 .heading-primary--sub {
@@ -118,14 +116,14 @@ body {
   letter-spacing: 1.75rem;
 
   /*
-   * shorthand notation
-   */
+    * shorthand notation
+    */
   animation: moveInRight 1s ease-out;
 }
 
 /*
- * simple animation examples: the browser is optimized for the opacity and transform properties; should only use these for animations.
- */
+  * simple animation examples: the browser is optimized for the opacity and transform properties; should only use these for animations.
+  */
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -171,8 +169,8 @@ body {
 }
 
 /*
- * pseudo classes represent a state of an element
- */
+  * pseudo classes represent a state of an element
+  */
 .btn:link,
 .btn:visited {
   font-size: 1.6rem;
@@ -191,46 +189,46 @@ body {
 }
 
 /*
- * this is the state when an element is clicked
- */
+  * this is the state when an element is clicked
+  */
 .btn:active {
   transform: translateY(-0.1rem);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .btn--white {
-  background-color: #fff;
-  color: #777;
+  background-color: $color-white;
+  color: $color-gray-dark;
 }
 
 /*
- * pseudo elements allow us to style certain parts of elements
- * i.e. the ':after' pseudo element adds a virtual element right after the element we're selecting, and we can then style that virtual element
- */
+  * pseudo elements allow us to style certain parts of elements
+  * i.e. the ':after' pseudo element adds a virtual element right after the element we're selecting, and we can then style that virtual element
+  */
 .btn::after {
   content: '';
   display: inline-block;
   /*
-   * this pseudo element is considered to be a child of the '.btn' element, so these height/width properties are relative to the '.btn' element.
-   */
+    * this pseudo element is considered to be a child of the '.btn' element, so these height/width properties are relative to the '.btn' element.
+    */
   height: 100%;
   width: 100%;
   border-radius: 10rem;
   /*
-   * this stacks the pseudo element behind the '.btn' element
-   */
+    * this stacks the pseudo element behind the '.btn' element
+    */
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
   /*
-   * always put the transition property on the initial state
-   */
+    * always put the transition property on the initial state
+    */
   transition: all 0.4s;
 }
 
 .btn--white::after {
-  background-color: #fff;
+  background-color: $color-white;
 }
 
 .btn:hover::after {
@@ -241,7 +239,7 @@ body {
 .btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
   /*
-   * automatically apply the styles of the zero-percent state - immediately upon page load - and before the animation starts
-   */
+    * automatically apply the styles of the zero-percent state - immediately upon page load - and before the animation starts
+    */
   animation-fill-mode: backwards;
 }

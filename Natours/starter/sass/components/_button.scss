@@ -1,0 +1,77 @@
+.btn {
+  /*
+  * pseudo classes represent a state of an element
+  */
+  &:link,
+  &:visited {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  /*
+   * this is the state when an element is clicked
+   */
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-gray-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /*
+   * pseudo elements allow us to style certain parts of elements
+   * i.e. the ':after' pseudo element adds a virtual element right after the element we're selecting, and we can then style that virtual element
+   */
+  &::after {
+    content: '';
+    display: inline-block;
+    /*
+     * this pseudo element is considered to be a child of the '.btn' element, so these height/width properties are relative to the '.btn' element.
+     */
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /*
+     * this stacks the pseudo element behind the '.btn' element
+     */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /*
+     * always put the transition property on the initial state
+     */
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /*
+     * automatically apply the styles of the zero-percent state - immediately upon page load - and before the animation starts
+     */
+    animation-fill-mode: backwards;
+  }
+}
